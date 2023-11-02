@@ -6,7 +6,7 @@
 /*   By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:13 by karisti-          #+#    #+#             */
-/*   Updated: 2023/11/02 19:15:02 by karisti-         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:32:53 by karisti-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,18 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 # include <stdio.h>
 # define BUFFER_SIZE 1024
 
-char				*ft_strtoupper(char *str);
-void				*ft_memalloc(size_t size);
-char				*ft_ltoa(long long n);
-char				*ft_itoabase(long long nbr, int base);
-char				*ft_strfromchar(char c);
-char				*ft_strjoinchar(char *s1, char c);
+long				ft_atol(const char *str);
 int					ft_get_next_line(int fd, char **line);
+char				*ft_itoabase(long long nbr, int base);
+char				*ft_ltoa(long long n);
+void				*ft_memalloc(size_t size);
+void				ft_putchar(char c);
+void				ft_putnbr(int n);
+void				ft_putstr(char *s);
+char				*ft_strfromchar(char c);
+int					ft_strisnum(char *str);
+char				*ft_strjoinchar(char *s1, char c);
+char				*ft_strtoupper(char *str);
 void				ft_lstprint_nbr(t_list *lst);
 void				ft_lstrem(t_list **alst, void *content);
 
