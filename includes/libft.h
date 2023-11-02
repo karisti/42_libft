@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: karisti- <karisti-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 14:12:13 by karisti-          #+#    #+#             */
-/*   Updated: 2019/11/20 17:07:13 by karisti-         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:15:02 by karisti-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+
+// Bonus
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **alst, t_list *new);
 int					ft_lstsize(t_list *lst);
@@ -68,5 +70,20 @@ void				ft_lstclear(t_list **lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 					void (*del)(void *));
+
+// Extras
+# include <fcntl.h>
+# include <stdio.h>
+# define BUFFER_SIZE 1024
+
+char				*ft_strtoupper(char *str);
+void				*ft_memalloc(size_t size);
+char				*ft_ltoa(long long n);
+char				*ft_itoabase(long long nbr, int base);
+char				*ft_strfromchar(char c);
+char				*ft_strjoinchar(char *s1, char c);
+int					ft_get_next_line(int fd, char **line);
+void				ft_lstprint_nbr(t_list *lst);
+void				ft_lstrem(t_list **alst, void *content);
 
 #endif

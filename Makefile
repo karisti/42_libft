@@ -6,7 +6,7 @@
 #    By: karisti- <karisti-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 13:16:39 by karisti-          #+#    #+#              #
-#    Updated: 2023/11/02 18:39:29 by karisti-         ###   ########.fr        #
+#    Updated: 2023/11/02 19:13:57 by karisti-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@
 
 NAME	=	libft.a
 
+# Original Libft
 CFILE	=	ft_atoi.c				\
 			ft_bzero.c				\
 			ft_calloc.c				\
@@ -49,7 +50,8 @@ CFILE	=	ft_atoi.c				\
 			ft_substr.c				\
 			ft_tolower.c			\
 			ft_toupper.c			\
-			
+
+# Original Libft Bonus
 CFILEB	=	ft_lstadd_back_bonus.c	\
 			ft_lstadd_front_bonus.c	\
 			ft_lstclear_bonus.c		\
@@ -60,17 +62,41 @@ CFILEB	=	ft_lstadd_back_bonus.c	\
 			ft_lstnew_bonus.c		\
 			ft_lstsize_bonus.c		\
 
-SRCSFD	=	srcs/
-SRCSFDB	=	srcs/bonus/
-OBJSFD	=	bin/objs/
-OBJSFDB	=	bin/objs/
-HDR_INC	=	-I./includes
-BIN		=	bin/
+# Libft Extra functions
+CFILEE	=	ft_atol.c				\
+			ft_strisnum.c			\
+			ft_putchar.c			\
+			ft_putstr.c				\
+			ft_putnbr.c				\
+			ft_strtoupper.c			\
+			ft_memalloc.c			\
+			ft_itoabase.c			\
+			ft_ltoa.c				\
+			ft_strfromchar.c		\
+			ft_strjoinchar.c		\
+			ft_get_next_line.c		\
+
+# Libft Bonus Extra functions
+CFILEBE	=	ft_lstprint_bonus.c		\
+			ft_lstrem_bonus.c		\
+
+SRCSFD		=	srcs/
+SRCSFDB		=	srcs/bonus/
+SRCSFDE		=	srcs/extras/
+SRCSFDBE	=	srcs/extras/bonus/
+OBJSFD		=	bin/objs/
+HDR_INC		=	-I./includes
+BIN			=	bin/
 
 SRCS	=	$(addprefix $(SRCSFD), $(CFILE))
+SRCS_E	=	$(addprefix $(SRCSFDE), $(CFILEE))
 SRCS_B	=	$(addprefix $(SRCSFDB), $(CFILEB))
+SRCS_BE	=	$(addprefix $(SRCSFDBE), $(CFILEBE))
+
 OBJS	=	$(addprefix $(OBJSFD), $(CFILE:.c=.o))
-OBJS_B	=	$(addprefix $(OBJSFDB), $(CFILEB:.c=.o))
+OBJS_E	=	$(addprefix $(OBJSFD), $(CFILEE:.c=.o))
+OBJS_B	=	$(addprefix $(OBJSFD), $(CFILEB:.c=.o))
+OBJS_BE	=	$(addprefix $(OBJSFD), $(CFILEBE:.c=.o))
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 # Compilation
@@ -93,6 +119,9 @@ project:
 projectb:
 	@echo "Checking libft with bonus ..."
 
+projectbe:
+	@echo "Checking libft with extras ..."
+
 $(OBJSFD):
 	@mkdir -p $@
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ directory"
@@ -101,7 +130,15 @@ $(OBJSFD)%.o: $(SRCSFD)%.c
 	@$(COMP) $(CFLAGS) $(HDR_INC) -o $@ -c $<
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
 
-$(OBJSFDB)%.o: $(SRCSFDB)%.c
+$(OBJSFD)%.o: $(SRCSFDE)%.c
+	@$(COMP) $(CFLAGS) $(HDR_INC) -o $@ -c $<
+	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
+
+$(OBJSFD)%.o: $(SRCSFDB)%.c
+	@$(COMP) $(CFLAGS) $(HDR_INC) -o $@ -c $<
+	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
+
+$(OBJSFD)%.o: $(SRCSFDBE)%.c
 	@$(COMP) $(CFLAGS) $(HDR_INC) -o $@ -c $<
 	@echo "\t[ $(GREEN)✔$(NONE) ] $@ object"
 
@@ -116,6 +153,12 @@ bonus: projectb $(OBJSFD) $(OBJS) $(OBJS_B)
 	@echo "\t[ $(GREEN)✔$(NONE) ] $(NAME) bonus library"
 	@echo "... libft ready"
 
+extras: projectbe $(OBJSFD) $(OBJS) $(OBJS_E) $(OBJS_B) $(OBJS_BE)
+	@ar rc $(BIN)$(NAME) $(OBJS) $(OBJS_E) $(OBJS_B) $(OBJS_BE)
+	@ranlib $(BIN)$(NAME)
+	@echo "\t[ $(GREEN)✔$(NONE) ] $(NAME) extra library"
+	@echo "... libft ready"
+
 clean:
 	@/bin/rm -rf $(OBJSFD)
 	@echo "\t[ $(RED)✗$(NONE) ] libft Objects directory"
@@ -125,5 +168,9 @@ fclean: clean
 	@echo "\t[ $(RED)✗$(NONE) ] libft library"
 
 re: fclean all
+
+rebonus: fclean bonus
+
+reextras: fclean extras
 
 .PHONY: project projectb all clean fclean re
