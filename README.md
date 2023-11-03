@@ -1,7 +1,7 @@
 # 42_Libft
 
 ## Description
-This project consists of recreating some C standard library functions related to memory management or strings. It also has a bonus that consists of creating linked lists. Furthermore, some extra functions have been added, useful for more advanced projects.
+This project consists of recreating some C standard library functions related to memory management or string manipulation. It also has a bonus that consists of creating linked lists. Furthermore, some extra functions have been added, useful for more advanced projects.
 
 ## Prerequisites
 - Nothing needed
