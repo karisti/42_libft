@@ -75,6 +75,7 @@ CFILEE	=	ft_atol.c				\
 			ft_strfromchar.c		\
 			ft_strjoinchar.c		\
 			ft_get_next_line.c		\
+			ft_strcmp.clean				\
 
 # Libft Bonus Extra functions
 CFILEBE	=	ft_lstprint_bonus.c		\
