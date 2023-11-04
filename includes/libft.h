@@ -91,5 +91,6 @@ char				*ft_strtoupper(char *str);
 void				ft_lstprint_nbr(t_list *lst);
 void				ft_lstrem(t_list **alst, void *content);
 int					ft_strcmp(const char *s1, const char *s2);
+char				*ft_newstr(size_t size);
 
 #endif
